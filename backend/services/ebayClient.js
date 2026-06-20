@@ -104,7 +104,7 @@ async function getTrafficReport(sellerId, { dimension = 'DAY', metricKeys } = {}
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function getIdentity(accessToken) {
-  const res = await axios.get(`${API_BASE}/commerce/identity/v1/user/`, {
+  const res = await axios.get(`https://apiz.ebay.com/commerce/identity/v1/user/`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   return res.data;
