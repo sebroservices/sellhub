@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SellHub — eBay Seller Management</title>
+  <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css" />
+</head>
+<body>
+
+  <div id="login-screen" class="login-screen hidden">
+    <div class="login-card">
+      <div class="login-logo">SellHub</div>
+      <div class="login-sub">eBay seller management platform</div>
+      <div id="login-error" class="alert alert-danger hidden"></div>
+      <a href="/auth/ebay" class="btn btn-primary btn-lg btn-block">
+        <i class="ti ti-plug-connected"></i> Connect with eBay
+      </a>
+      <p class="login-note">Redirected to eBay to authorise via OAuth 2.0. We never see your password.</p>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-text">SellHub</span>
+        <span class="logo-badge">eBay</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-page="dashboard"><i class="ti ti-layout-dashboard"></i> <span class="nav-label">Dashboard</span></button>
+        <button class="nav-item" data-page="orders"><i class="ti ti-shopping-cart"></i> <span class="nav-label">Orders</span></button>
+        <button class="nav-item" data-page="inventory"><i class="ti ti-package"></i> <span class="nav-label">Inventory</span></button>
+        <button class="nav-item" data-page="cogs"><i class="ti ti-tag"></i> <span class="nav-label">Cost of goods</span></button>
+        <button class="nav-item" data-page="suppliers"><i class="ti ti-truck"></i> <span class="nav-label">Suppliers</span></button>
+        <button class="nav-item" data-page="profit"><i class="ti ti-chart-bar"></i> <span class="nav-label">Profit analysis</span></button>
+        <button class="nav-item" data-page="goals"><i class="ti ti-target"></i> <span class="nav-label">Goals</span></button>
+        <button class="nav-item" data-page="reports"><i class="ti ti-file-report"></i> <span class="nav-label">Reports</span></button>
+        <button class="nav-item" data-page="emailschedule"><i class="ti ti-mail"></i> <span class="nav-label">Email reports</span></button>
+        <button class="nav-item" data-page="calculator"><i class="ti ti-calculator"></i> <span class="nav-label">Fee calculator</span></button>
+        <div class="nav-divider">Account</div>
+        <button class="nav-item" data-page="settings"><i class="ti ti-settings"></i> <span class="nav-label">Settings</span></button>
+        <button class="nav-item" id="sync-btn"><i class="ti ti-refresh"></i> <span class="nav-label">Sync eBay</span></button>
+        <button class="nav-item nav-logout" id="logout-btn"><i class="ti ti-logout"></i> <span class="nav-label">Log out</span></button>
+      </nav>
+      <div class="sidebar-footer" id="sidebar-footer"></div>
+    </aside>
+
+    <main class="main-content">
+      <div id="page-dashboard"     class="page active"></div>
+      <div id="page-orders"        class="page"></div>
+      <div id="page-inventory"     class="page"></div>
+      <div id="page-cogs"          class="page"></div>
+      <div id="page-suppliers"     class="page"></div>
+      <div id="page-profit"        class="page"></div>
+      <div id="page-goals"         class="page"></div>
+      <div id="page-reports"       class="page"></div>
+      <div id="page-emailschedule" class="page"></div>
+      <div id="page-calculator"    class="page"></div>
+      <div id="page-settings"      class="page"></div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/pages/dashboard.js"></script>
+  <script src="/js/pages/orders.js"></script>
+  <script src="/js/pages/inventory.js"></script>
+  <script src="/js/pages/cogs.js"></script>
+  <script src="/js/pages/suppliers.js"></script>
+  <script src="/js/pages/profit.js"></script>
+  <script src="/js/pages/goals.js"></script>
+  <script src="/js/pages/reports.js"></script>
+  <script src="/js/pages/emailschedule.js"></script>
+  <script src="/js/pages/calculator.js"></script>
+  <script src="/js/pages/settings.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
