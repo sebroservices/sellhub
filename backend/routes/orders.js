@@ -100,8 +100,8 @@ router.get('/:id', requireAuth, async (req, res) => {
   }
 });
 
-// POST /api/orders/sync
-router.post('/sync', requireAuth, async (req, res) => {
+// GET /api/orders/summary  ← must be BEFORE /:id
+router.get('/summary', requireAuth, async (req, res) => {
   try {
     await syncOrders(req.sellerId);
     res.json({ success: true, message: 'Orders synced from eBay.' });
