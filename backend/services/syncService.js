@@ -42,20 +42,14 @@ async function syncOrders(sellerId) {
   console.log(`[sync] Fetching orders for seller ${sellerId}…`);
 
   // Fetch all statuses by running multiple calls
-  const statuses = [
-    'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS|FULFILLED}',
-  ];
-
   let allOrders = [];
-  for (const filter of statuses) {
-    let offset = 0;
-    while (true) {
-      const data = await ebay.getOrders(sellerId, { limit: 50, offset, filter });
-      if (!data.orders || data.orders.length === 0) break;
-      allOrders = allOrders.concat(data.orders);
-      if (data.orders.length < 50) break;
-      offset += 50;
-    }
+  let offset = 0;
+  while (true) {
+    const data = await ebay.getOrders(sellerId, { limit: 50, offset });
+    if (!data.orders || data.orders.length === 0) break;
+    allOrders = allOrders.concat(data.orders);
+    if (data.orders.length < 50) break;
+    offset += 50;
   }
 
   console.log(`[sync] Processing ${allOrders.length} orders…`);
