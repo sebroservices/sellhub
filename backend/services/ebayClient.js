@@ -38,11 +38,16 @@ async function getValidToken(sellerId) {
 // ── Generic authenticated GET ─────────────────────────────────────────────────
 async function ebayGet(sellerId, path, params = {}) {
   const token = await getValidToken(sellerId);
-  const res = await axios.get(`${API_BASE}${path}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    params,
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`${API_BASE}${path}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      params,
+    });
+    return res.data;
+  } catch (err) {
+    console.error('[ebayGet error]', path, JSON.stringify(err?.response?.data, null, 2));
+    throw err;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
