@@ -56,7 +56,10 @@ router.get('/ebay/callback', async (req, res) => {
     console.log('[auth] Login successful for:', rows[0].ebay_username);
     req.session.save((err) => {
   if (err) console.error('Session save error:', err);
+  req.session.save((err) => {
+  if (err) console.error('Session save error:', err);
   res.redirect('/#dashboard');
+});
 });
   } catch (err) {
     console.error('[auth] OAuth callback error:', err.message);
