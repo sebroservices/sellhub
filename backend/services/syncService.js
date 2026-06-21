@@ -44,8 +44,9 @@ async function syncOrders(sellerId) {
   // Fetch all statuses by running multiple calls
   let allOrders = [];
   let offset = 0;
+  const fromDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
   while (true) {
-    const data = await ebay.getOrders(sellerId, { limit: 50, offset });
+    const data = await ebay.getOrders(sellerId, { limit: 50, offset, filter: `creationdate:[${fromDate}..}` });
     if (!data.orders || data.orders.length === 0) break;
     allOrders = allOrders.concat(data.orders);
     if (data.orders.length < 50) break;
