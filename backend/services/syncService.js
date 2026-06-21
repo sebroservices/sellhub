@@ -43,8 +43,7 @@ async function syncOrders(sellerId) {
 
   // Fetch all statuses by running multiple calls
   const statuses = [
-    'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}',
-    'orderfulfillmentstatus:{FULFILLED}',
+    'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS|FULFILLED}',
   ];
 
   let allOrders = [];
