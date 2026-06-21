@@ -55,7 +55,7 @@ router.get('/', requireAuth, async (req, res) => {
       offset: parseInt(offset),
     });
   } catch (err) {
-    console.error(err);
+    console.error('[orders sync error]', JSON.stringify(err?.response?.data || err.message, null, 2));
     res.status(500).json({ error: err.message });
   }
 });
