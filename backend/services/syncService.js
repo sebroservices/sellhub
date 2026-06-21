@@ -44,9 +44,10 @@ async function syncOrders(sellerId) {
   // Fetch all statuses by running multiple calls
   let allOrders = [];
   let offset = 0;
-  const fromDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
+  const from = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
+  const fromDate = from.toISOString().split('.')[0] + 'Z';
   while (true) {
-    const data = await ebay.getOrders(sellerId, { limit: 50, offset, filter: `creationdate:[${fromDate}..}` });
+    const data = await ebay.getOrders(sellerId, { limit: 50, offset, filter: `creationdate:[${fromDate}..${new Date().toISOString().split('.')[0]}Z]` });
     if (!data.orders || data.orders.length === 0) break;
     allOrders = allOrders.concat(data.orders);
     if (data.orders.length < 50) break;
