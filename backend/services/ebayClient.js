@@ -45,7 +45,8 @@ async function ebayGet(sellerId, path, params = {}) {
     });
     return res.data;
   } catch (err) {
-    console.error('[ebayGet error]', path, JSON.stringify(err?.response?.data, null, 2));
+    const ebayError = err?.response?.data?.errors?.[0];
+    console.error('[ebayGet error]', path, 'errorId:', ebayError?.errorId, 'message:', ebayError?.message, 'longMessage:', ebayError?.longMessage);
     throw err;
   }
 }
